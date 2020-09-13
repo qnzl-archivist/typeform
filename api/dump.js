@@ -1,3 +1,4 @@
+const authCheck = require(`./_lib/auth`)
 const fetch = require(`node-fetch`)
 const auth = require(`@qnzl/auth`)
 
@@ -5,16 +6,7 @@ const { CLAIMS } = auth
 
 const typeformToken = process.env.TYPEFORM_TOKEN
 
-module.exports = async (req, res) => {
-  const {
-    authorization
-  } = req.headers
-
-  const isTokenValid = auth.checkJWT(authorization, CLAIMS.typeform.dump, `watchers`, process.env.ISSUER)
-
-  if (!isTokenValid) {
-    return res.status(401).send()
-  }
+const handler = async (req, res) => {
 
   let formResponses
   try {
@@ -33,5 +25,8 @@ module.exports = async (req, res) => {
   }
 
   return res.json(formResponses)
+}
 
+module.exports = (req, res) => {
+  return authCheck(CLAIMS.typeform.dump)(req, res, handler)
 }
