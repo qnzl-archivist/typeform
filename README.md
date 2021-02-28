@@ -1,4 +1,4 @@
-## @watchers/typeform
+## typeform
 
 ### Setup
 
