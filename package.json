@@ -2,16 +2,18 @@
   "name": "@qnzl/typeform",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "vercel dev --listen 3005"
+  "bin": {
+    "typeform": "bin/typeform.js"
   },
-  "author": "Madeline Cameron <maddie@qnzl.co>",
+  "scripts": {
+    "build": "pkg bin/typeform.js --out-path pkg/"
+  },
+  "author": "Madeline <maddie@qnzl.co>",
   "license": "MIT",
   "dependencies": {
-    "@qnzl/auth": "^1.0.11",
-    "jose": "^1.17.2",
-    "node-fetch": "^2.6.0"
+    "commander": "^7.1.0",
+    "dayjs": "^1.10.4",
+    "node-fetch": "^2.6.0",
+    "trello": "^0.10.0"
   }
 }
